@@ -1,9 +1,31 @@
 # Research Question
 
+## Update — GPU-capable models (decision made after the initial roadmap)
+
+The original plan below was CPU-only, built entirely around a lightweight Decision Tree
+baseline. That decision has since changed: **Stage 5+ (baseline model and beyond, not
+started in this repo yet) will use GPU-capable models** in Colab instead of a CPU-only
+Decision Tree.
+
+**What this does and doesn't affect:**
+- Stages 1-4 (research, dataset exploration, preprocessing, feature engineering — what's
+  actually built in this repo right now) are **unaffected**. Understanding the data,
+  cleaning it, and engineering features doesn't depend on which model trains on it later.
+- The "resource-constrained hardware" framing below is the *original* research angle. It
+  is being revisited as part of Stage 5 planning — worth deciding explicitly (and writing
+  down here) whether the project keeps a resource-vs-accuracy comparison (e.g. a GPU
+  model as the "large/high-accuracy" end of a trade-off curve, benchmarked against a
+  small CPU model — see `README.md`'s pipeline diagram) or moves fully away from the
+  lightweight-detector framing toward "best achievable detection accuracy."
+- Until that's decided, the original question below stands as the historical starting
+  point — don't delete it, update it in place once Stage 5 is actually being planned.
+
+---
+
 ## Project
 
 Lightweight Machine-Learning-Based Cybersecurity Threat Detection for
-Resource-Constrained Hardware.
+Resource-Constrained Hardware *(original framing — see Update note above)*.
 
 ## The question
 

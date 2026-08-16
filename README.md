@@ -103,6 +103,12 @@ work — do not start it yet (see `CHECKLIST.md`).
 
 ## Hardware note
 
-No GPU is required or used anywhere in this project. Everything runs on free CPU-only
-Google Colab, and the final model is specifically meant to be small enough to run on an
-ordinary laptop CPU.
+Stages 1-4 (everything in this repo right now — research, dataset exploration,
+preprocessing, feature engineering) need no GPU at all; free CPU-only Google Colab is
+plenty.
+
+**Update:** for Stage 5+ (baseline model and beyond, not started yet), this project will
+use GPU-capable models instead of a CPU-only Decision Tree baseline. When you get there,
+enable a GPU in Colab: **Runtime → Change runtime type → Hardware accelerator → GPU (T4)**.
+See the "Update" note in `research/research_question.md` for what this means for the
+research framing.
