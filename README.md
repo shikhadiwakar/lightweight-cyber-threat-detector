@@ -13,11 +13,15 @@ Author: Anush Jindal
 
 ---
 
-## New here? Start with the setup guide
+## New here? Start with WELCOME.md
 
 If you have never used Git, GitHub, Python, or Google Colab before, do not start with this
-README — start with **[SETUP_GUIDE.md](SETUP_GUIDE.md)**. It walks through every tool,
-every command, and every button-click in plain language, from zero.
+README — start with **[WELCOME.md](WELCOME.md)**. It's a short, friendly orientation to
+every tool involved (especially Google Colab, where you'll do almost all your work), with
+every official link in one place.
+
+Need more depth on any step — exact commands, troubleshooting? That's
+**[SETUP_GUIDE.md](SETUP_GUIDE.md)**.
 
 Once your environment is set up, come back here for the project map.
 
