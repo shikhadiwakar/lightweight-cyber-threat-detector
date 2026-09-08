@@ -68,6 +68,7 @@ anush/
 │   └── feature_documentation_template.md  ← Feature | Meaning | Type | Keep/Remove | Reason
 │
 ├── notebooks/
+│   ├── 00_welcome_and_resources.ipynb ← open this first in Colab — links + environment check
 │   ├── 01_dataset_exploration.ipynb   ← load the data, inspect it, understand it
 │   ├── 02_preprocessing.ipynb         ← clean it, split it safely (no data leakage)
 │   ├── 03_feature_engineering.ipynb   ← SKELETON — you fill this in
