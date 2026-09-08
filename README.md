@@ -23,6 +23,10 @@ every official link in one place.
 Need more depth on any step — exact commands, troubleshooting? That's
 **[SETUP_GUIDE.md](SETUP_GUIDE.md)**.
 
+Not sure what you should be working on right now vs. later? That's
+**[FOLLOW_OR_DEFER.md](FOLLOW_OR_DEFER.md)** — a one-page compass: exactly what to do
+next, in order, and an explicit list of what to deliberately leave alone for now.
+
 Once your environment is set up, come back here for the project map.
 
 ---
@@ -54,7 +58,9 @@ to the next one.
 ```
 anush/
 ├── README.md                          ← you are here
-├── SETUP_GUIDE.md                     ← start here if you're new to any of this
+├── WELCOME.md                         ← friendly orientation to every tool, especially Colab
+├── SETUP_GUIDE.md                     ← detailed step-by-step setup, exact commands + troubleshooting
+├── FOLLOW_OR_DEFER.md                 ← what to do now vs. deliberately not yet
 ├── CHECKLIST.md                       ← verification checklist for Stages 1-4
 ├── setup.bat                          ← one-click local environment setup (Windows)
 ├── requirements.txt                   ← Python libraries this project needs
@@ -72,7 +78,8 @@ anush/
 │   ├── 01_dataset_exploration.ipynb   ← load the data, inspect it, understand it
 │   ├── 02_preprocessing.ipynb         ← clean it, split it safely (no data leakage)
 │   ├── 03_feature_engineering.ipynb   ← SKELETON — you fill this in
-│   └── 03_FEATURE_ENGINEERING_GUIDE.md ← step-by-step instructions + resources for the above
+│   ├── 03_FEATURE_ENGINEERING_GUIDE.md ← step-by-step instructions + resources for the above
+│   └── PIPELINE_CHEATSHEET.ipynb      ← quick-reference: what to call and why, no solved code
 │
 ├── data/
 │   └── README.md                      ← which CICIDS2017 file to use + where to get it
