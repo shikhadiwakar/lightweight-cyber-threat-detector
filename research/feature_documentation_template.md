@@ -30,11 +30,85 @@ For every column in your dataset, add one row:
 
 | Feature | Meaning | Data Type | Keep/Remove | Reason |
 |---|---|---|---|---|
-| _(example)_ Flow Duration | Total duration of the flow in microseconds | float64 | Keep | Behavioural — attacks often have distinctly short/long flow durations |
-| _(example)_ Source IP | The IP address that started the flow | object | Remove | Identifier — the model could "memorize" specific IPs seen in training instead of learning general attack behaviour, which would not generalize to a real deployment (data leakage risk) |
-| | | | | |
-| | | | | |
-| | | | | |
+| `' Destination Port'` | Port number on the receiving end of the flow (e.g. 80 = HTTP, 22 = SSH) | int64. Storage is fine, but it's really a categorical label, not a quantity | | |
+| `' Flow Duration'` | Total time the flow lasted (microseconds) | int64. Correct | | |
+| `' Total Fwd Packets'` | Number of packets sent forward (client → server) | int64. Correct | | |
+| `' Total Backward Packets'` | Number of packets sent backward (server → client) | int64. Correct | | |
+| `'Total Length of Fwd Packets'` | Total bytes of payload sent forward | int64. Correct (despite the name, it's total bytes, not a per-packet length) | | |
+| `' Total Length of Bwd Packets'` | Total bytes of payload sent backward | int64. Correct | | |
+| `' Fwd Packet Length Max'` | Size of the largest forward packet | int64. Correct | | |
+| `' Fwd Packet Length Min'` | Size of the smallest forward packet | int64. Correct | | |
+| `' Fwd Packet Length Mean'` | Average forward packet size | float64. Correct | | |
+| `' Fwd Packet Length Std'` | Standard deviation of forward packet sizes | float64. Correct | | |
+| `'Bwd Packet Length Max'` | Size of the largest backward packet | int64. Correct | | |
+| `' Bwd Packet Length Min'` | Size of the smallest backward packet | int64. Correct | | |
+| `' Bwd Packet Length Mean'` | Average backward packet size | float64. Correct | | |
+| `' Bwd Packet Length Std'` | Standard deviation of backward packet sizes | float64. Correct | | |
+| `'Flow Bytes/s'` | Data transfer rate of the flow (bytes per second) | float64. Type is right, but contains `inf` and `NaN` values (division by zero duration) that need handling | | |
+| `' Flow Packets/s'` | Packet rate of the flow (packets per second) | float64. Same `inf` issue as above | | |
+| `' Flow IAT Mean'` | Average time gap between consecutive packets in the flow (IAT = inter-arrival time) | float64. Correct | | |
+| `' Flow IAT Std'` | Standard deviation of those gaps (how irregular the timing is) | float64. Correct | | |
+| `' Flow IAT Max'` | Longest gap between two packets in the flow | int64. Correct | | |
+| `' Flow IAT Min'` | Shortest gap between two packets in the flow | int64. Correct | | |
+| `'Fwd IAT Total'` | Total of all time gaps between forward packets | int64. Correct | | |
+| `' Fwd IAT Mean'` | Average gap between forward packets | float64. Correct | | |
+| `' Fwd IAT Std'` | Standard deviation of forward gaps | float64. Correct | | |
+| `' Fwd IAT Max'` | Longest gap between forward packets | int64. Correct | | |
+| `' Fwd IAT Min'` | Shortest gap between forward packets | int64. Correct | | |
+| `'Bwd IAT Total'` | Total of all time gaps between backward packets | int64. Correct | | |
+| `' Bwd IAT Mean'` | Average gap between backward packets | float64. Correct | | |
+| `' Bwd IAT Std'` | Standard deviation of backward gaps | float64. Correct | | |
+| `' Bwd IAT Max'` | Longest gap between backward packets | int64. Correct | | |
+| `' Bwd IAT Min'` | Shortest gap between backward packets | int64. Correct | | |
+| `'Fwd PSH Flags'` | Number of times the TCP PSH ("push data now") flag was set in forward packets | int64. Correct (mostly 0/1) | | |
+| `' Bwd PSH Flags'` | Same, for backward packets | int64. Correct (almost always 0) | | |
+| `' Fwd URG Flags'` | Number of times the TCP URG ("urgent data") flag was set in forward packets | int64. Correct (almost always 0) | | |
+| `' Bwd URG Flags'` | Same, for backward packets | int64. Correct (almost always 0) | | |
+| `' Fwd Header Length'` | Total bytes of protocol headers in forward packets | int64. Correct | | |
+| `' Bwd Header Length'` | Total bytes of protocol headers in backward packets | int64. Correct | | |
+| `'Fwd Packets/s'` | Forward packets per second | float64. Correct | | |
+| `' Bwd Packets/s'` | Backward packets per second | float64. Correct | | |
+| `' Min Packet Length'` | Smallest packet in the flow, either direction | int64. Correct | | |
+| `' Max Packet Length'` | Largest packet in the flow, either direction | int64. Correct | | |
+| `' Packet Length Mean'` | Average packet size across the whole flow | float64. Correct | | |
+| `' Packet Length Std'` | Standard deviation of packet sizes across the flow | float64. Correct | | |
+| `' Packet Length Variance'` | Variance of packet sizes (the square of the std) | float64. Correct | | |
+| `'FIN Flag Count'` | Number of packets with the TCP FIN (connection close) flag | int64. Correct | | |
+| `' SYN Flag Count'` | Number of packets with the TCP SYN (connection open) flag | int64. Correct | | |
+| `' RST Flag Count'` | Number of packets with the TCP RST (connection reset) flag | int64. Correct | | |
+| `' PSH Flag Count'` | Number of packets with the PSH flag | int64. Correct | | |
+| `' ACK Flag Count'` | Number of packets with the ACK (acknowledgement) flag | int64. Correct | | |
+| `' URG Flag Count'` | Number of packets with the URG flag | int64. Correct | | |
+| `' CWE Flag Count'` | Number of packets with the CWR (congestion window reduced) flag; the name is a known typo in the dataset | int64. Correct | | |
+| `' ECE Flag Count'` | Number of packets with the ECE (explicit congestion notification echo) flag | int64. Correct | | |
+| `' Down/Up Ratio'` | Ratio of download (backward) to upload (forward) traffic | int64. Stored as a whole number, so it's a rounded ratio | | |
+| `' Average Packet Size'` | Average size of a packet in the flow | float64. Correct | | |
+| `' Avg Fwd Segment Size'` | Average size of forward segments (observed in the forward direction) | float64. Correct | | |
+| `' Avg Bwd Segment Size'` | Average size of backward segments | float64. Correct | | |
+| `' Fwd Header Length.1'` | Duplicate copy of `Fwd Header Length` (pandas added `.1` because the name appeared twice in the CSV) | int64. Correct type, but it's a duplicate column | | |
+| `'Fwd Avg Bytes/Bulk'` | Average bytes per "bulk" transfer in the forward direction | int64. Correct (mostly 0) | | |
+| `' Fwd Avg Packets/Bulk'` | Average packets per bulk transfer, forward | int64. Correct (mostly 0) | | |
+| `' Fwd Avg Bulk Rate'` | Average bulk transfer rate, forward | int64. Correct (mostly 0) | | |
+| `' Bwd Avg Bytes/Bulk'` | Average bytes per bulk transfer, backward | int64. Correct (mostly 0) | | |
+| `' Bwd Avg Packets/Bulk'` | Average packets per bulk transfer, backward | int64. Correct (mostly 0) | | |
+| `'Bwd Avg Bulk Rate'` | Average bulk transfer rate, backward | int64. Correct (mostly 0) | | |
+| `'Subflow Fwd Packets'` | Average number of forward packets per subflow | int64. Correct | | |
+| `' Subflow Fwd Bytes'` | Average forward bytes per subflow | int64. Correct | | |
+| `' Subflow Bwd Packets'` | Average number of backward packets per subflow | int64. Correct | | |
+| `' Subflow Bwd Bytes'` | Average backward bytes per subflow | int64. Correct | | |
+| `'Init_Win_bytes_forward'` | TCP window size (receive buffer, bytes) advertised in the first forward packet; `-1` when there's no TCP handshake | int64. Correct, but `-1` is a placeholder, not a real size | | |
+| `' Init_Win_bytes_backward'` | Same, for the first backward packet | int64. Same `-1` caveat | | |
+| `' act_data_pkt_fwd'` | Number of forward packets that carry at least 1 byte of actual data | int64. Correct | | |
+| `' min_seg_size_forward'` | Smallest TCP segment header size seen in the forward direction | int64. Correct | | |
+| `'Active Mean'` | Average time the flow was active before going idle | float64. Correct | | |
+| `' Active Std'` | Standard deviation of active periods | float64. Correct | | |
+| `' Active Max'` | Longest active period | int64. Correct | | |
+| `' Active Min'` | Shortest active period | int64. Correct | | |
+| `'Idle Mean'` | Average time the flow was idle before becoming active again | float64. Correct | | |
+| `' Idle Std'` | Standard deviation of idle periods | float64. Correct | | |
+| `' Idle Max'` | Longest idle period | int64. Correct | | |
+| `' Idle Min'` | Shortest idle period | int64. Correct | | |
+| `' Label'` | The class of the flow: `BENIGN` or the attack type (e.g. DoS, PortScan) | object (string). Correct for raw data, but must be encoded to numbers before training | | |
 
 Add as many rows as you have columns. This table becomes Stage 4's main deliverable
 alongside the feature-engineering notebook — it's the evidence that every column was a
