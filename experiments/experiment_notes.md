@@ -17,7 +17,7 @@ Copy this block for each new entry:
 **Dataset file used:**
 **What I did:**
 **What I observed:**
-**Any errors / problems:**
+**Any errors/problems:**
 **Next step:**
 ```
 
@@ -36,5 +36,18 @@ Flow Packets has 1297, Flow Bytes has 289 infinite values
 BENIGN and DoS Hulk are the most common (63.5% and 33.3%, respectively)
 DoS GoldenEye, DoS slowloris and DoS Slowhttptest are rare (1.84%, 0.84% and 0.79%, respectively)
 Heartbleed is the rarest at ~0.00 (only 11 counts)
+
+```
+
+```
+### 6-10-2026
+
+0.19% rows dropped for infinite values
+11.7% rows dropped for duplicate values
+No rows dropped for missing values
+No identifier columns removed
+X_train: (488393, 78)
+X_test:  (122099, 78)
+Stratified splitting worked cleanly, equal percentage split for train and test data
 
 ```
