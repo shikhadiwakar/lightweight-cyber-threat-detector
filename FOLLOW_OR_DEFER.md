@@ -23,9 +23,9 @@ right now," check here first.
    guide. This one is yours — no solved version exists on purpose.
 10. **`CHECKLIST.md`** — go through every box honestly before telling anyone this stage
     is "done."
-11. **`notebooks/04_baseline_model_DEMO.ipynb`** — Stage 5 is now open. Read the demo's
-    steps, then write your own `04_baseline_model.ipynb` first and use the demo to compare
-    or when stuck. Push `feature_sets.json` to `experiments/` before you start.
+11. **`notebooks/04_baseline_model.ipynb`** — Stage 5 is now open. It has instructions
+    only, no code: you write every line in the empty cells. Push `feature_sets.json` to
+    `experiments/` before you start.
 12. After training: copy your real numbers into `experiments/results.csv`, add a dated entry
     to `experiments/experiment_notes.md`, and push.
 
