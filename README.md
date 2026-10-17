@@ -41,12 +41,13 @@ This repo currently covers **Stage 1 → Stage 4** of the full project plan:
 | 2 | Dataset | Guide + notebook ready — `notebooks/01_dataset_exploration.ipynb` |
 | 3 | Preprocessing | Guide + notebook ready — `notebooks/02_preprocessing.ipynb` |
 | 4 | Feature Engineering | **You write this one** — see `notebooks/03_FEATURE_ENGINEERING_GUIDE.md` |
-| 5+ | Baseline model, optimization, benchmarking, app/game | **Not started on purpose** — see note below |
+| 5 | Baseline Decision Tree | Demo copy with steps ready — `notebooks/04_baseline_model_DEMO.ipynb` (write your own first) |
+| 6+ | Optimization, benchmarking, app/game | **Not started on purpose** |
 
-**We deliberately stop before training the first model.** The point of Stages 1-4 is to
-fully understand and prepare the data. Only once that is solid (and reviewed) do we move
-on to training a Decision Tree baseline. Jumping ahead defeats the point of the exercise —
-you would be tuning a model on data you don't actually understand yet.
+Stages 1-4 were deliberately finished before any model was trained, so the model is built
+on data that is actually understood. Stage 5 trains one **untuned** Decision Tree on each of
+the four feature sets (A-D) to get baseline numbers. Shrinking and tuning the model comes
+after those numbers are recorded and reviewed — jumping ahead defeats the point of the exercise.
 
 Use **[CHECKLIST.md](CHECKLIST.md)** to confirm each stage is genuinely done before moving
 to the next one.
@@ -79,7 +80,8 @@ anush/
 │   ├── 02_preprocessing.ipynb         ← clean it, split it safely (no data leakage)
 │   ├── 03_feature_engineering.ipynb   ← SKELETON — you fill this in
 │   ├── 03_FEATURE_ENGINEERING_GUIDE.md ← step-by-step instructions + resources for the above
-│   └── PIPELINE_CHEATSHEET.ipynb      ← quick-reference: what to call and why, no solved code
+│   ├── PIPELINE_CHEATSHEET.ipynb      ← quick-reference: what to call and why, no solved code
+│   └── 04_baseline_model_DEMO.ipynb   ← Stage 5 demo with steps (untuned tree on feature sets A-D)
 │
 ├── data/
 │   └── README.md                      ← which CICIDS2017 file to use + where to get it

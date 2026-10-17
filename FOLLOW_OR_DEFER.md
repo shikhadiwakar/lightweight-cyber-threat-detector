@@ -23,6 +23,11 @@ right now," check here first.
    guide. This one is yours — no solved version exists on purpose.
 10. **`CHECKLIST.md`** — go through every box honestly before telling anyone this stage
     is "done."
+11. **`notebooks/04_baseline_model_DEMO.ipynb`** — Stage 5 is now open. Read the demo's
+    steps, then write your own `04_baseline_model.ipynb` first and use the demo to compare
+    or when stuck. Push `feature_sets.json` to `experiments/` before you start.
+12. After training: copy your real numbers into `experiments/results.csv`, add a dated entry
+    to `experiments/experiment_notes.md`, and push.
 
 If you're ever unsure what to open next, this numbered list is the answer.
 
@@ -34,10 +39,9 @@ These are real parts of the eventual project. None of them are cancelled. They a
 **not next** — starting them now means building on data/features you haven't actually
 finished understanding yet, which wastes the work.
 
-- ❌ Training a Decision Tree or any other model (`04_baseline_model.ipynb` doesn't
-  exist yet — on purpose).
-- ❌ Model optimization / pruning experiments (`max_depth`, `ccp_alpha`, etc.) — that's
-  after a baseline exists.
+- ❌ Tuning or shrinking the model (`max_depth`, `ccp_alpha`, pruning, etc.) — the baseline
+  Decision Tree (Step 11 above) is now allowed, but optimization waits until the baseline
+  numbers are recorded and reviewed.
 - ❌ Resource benchmarking (model size, latency, RAM) — nothing to benchmark yet.
 - ❌ The Streamlit dashboard or the React/FastAPI game (`app/`, `game/` folders don't
   exist yet — on purpose).
